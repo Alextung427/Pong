@@ -2,6 +2,8 @@ import pygame
 import sys
 import random
 
+from pygame.locals import *
+
 #Executable functions
 #Ball moving animations
 def ballAnimation():
@@ -48,7 +50,7 @@ def playerAnimation():
 
     if player.top <= 0:
         player.top = 0
-    if player.bottom >= screenHeight::
+    if player.bottom >= screenHeight:
         player.bottom = screenHeight
 
 #Opponent or computer movements, restrictions to not let bars go beyond window
@@ -58,7 +60,7 @@ def opponentAnimations():
     if opponent.top < ball.y:
         opponent.y += opponentSpeed
     if opponent.bottom > ball.y:
-        oppoennt.y -= opponentSpeed
+        opponent.y -= opponentSpeed
 
     #bar restrictions
     if opponent.top <= 0:
@@ -126,9 +128,10 @@ scoreTime = True
 #Score text
 playerScore = 0
 opponentScore = 0
-font =pygame.font.Font("freesans.ttf", 40)
+font =pygame.font.SysFont("FreeSans.ttf", 30)
 
 #Sound
+
 
 #Game loop
 while True:
@@ -165,8 +168,8 @@ while True:
     playerText = font.render(f'{playerScore}', False, lightGrey)
     screen.blit(playerText,(600,470))
 
-    opponentText = (font.render(f'{oppnentScore}', False, lightGrey)
-    screen.blit(playerText,(600,470))\
+    opponentText = font.render(f'{opponentScore}', False, lightGrey)
+    screen.blit(opponentText,(600,470))
 
     pygame.display.flip()
-    clock.tick(120)
+    clock.tick(60)
